@@ -75,7 +75,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-200">
       {/* Hero Header */}
       <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
         {/* Background decoration */}
@@ -88,7 +88,7 @@ export default async function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <div className="inline-block mb-4">
-            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200">
               <Zap className="w-4 h-4 mr-2" />
               AI-Powered Reports
             </span>
@@ -113,7 +113,7 @@ export default async function HomePage() {
             </Link>
             <Link
               href="/reports"
-              className="inline-flex items-center px-8 py-4 rounded-xl font-semibold text-indigo-600 bg-white hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-8 py-4 rounded-xl font-semibold text-indigo-600 dark:text-indigo-700 bg-white hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               <FileText className="w-5 h-5 mr-2" />
               Browse Reports
@@ -125,55 +125,55 @@ export default async function HomePage() {
       {/* Stats Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700 transition-colors duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Active Pipelines
                 </p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">
+                <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
                   {pipelines.length}
                 </p>
               </div>
-              <div className="p-3 bg-blue-100 rounded-xl">
-                <Package className="w-8 h-8 text-blue-600" />
+              <div className="p-3 bg-blue-100 dark:bg-blue-900/50 rounded-xl">
+                <Package className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700 transition-colors duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Reports Generated
                 </p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">
+                <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
                   {reportsCount}
                 </p>
               </div>
-              <div className="p-3 bg-green-100 rounded-xl">
-                <FileText className="w-8 h-8 text-green-600" />
+              <div className="p-3 bg-green-100 dark:bg-green-900/50 rounded-xl">
+                <FileText className="w-8 h-8 text-green-600 dark:text-green-400" />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700 transition-colors duration-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Success Rate
                 </p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">
+                <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
                   {jobStats.successRate}%
                 </p>
                 {jobStats.completed > 0 && (
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                     {jobStats.completed} completed, {jobStats.failed} failed
                   </p>
                 )}
               </div>
-              <div className="p-3 bg-purple-100 rounded-xl">
-                <TrendingUp className="w-8 h-8 text-purple-600" />
+              <div className="p-3 bg-purple-100 dark:bg-purple-900/50 rounded-xl">
+                <TrendingUp className="w-8 h-8 text-purple-600 dark:text-purple-400" />
               </div>
             </div>
           </div>
@@ -183,25 +183,25 @@ export default async function HomePage() {
       {/* Feature Cards Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Powerful Features
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Everything you need to create professional reports powered by AI
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* AI-Powered Generation */}
-          <div className="group animate-fade-in bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 overflow-hidden">
+          <div className="group animate-fade-in bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden">
             <div className="p-8">
               <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Sparkles className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 AI-Powered Generation
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Leverage advanced LLMs to generate insightful, contextual
                 reports automatically from your data
               </p>
@@ -210,17 +210,17 @@ export default async function HomePage() {
 
           {/* Multiple Formats */}
           <div
-            className="group animate-fade-in bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 overflow-hidden"
+            className="group animate-fade-in bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
             style={{ animationDelay: "100ms" }}
           >
             <div className="p-8">
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Layers className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Multiple Formats
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Export reports in HTML, PDF, or Markdown formats to suit your
                 workflow and distribution needs
               </p>
@@ -229,17 +229,17 @@ export default async function HomePage() {
 
           {/* Automated Pipelines */}
           <div
-            className="group animate-fade-in bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 overflow-hidden"
+            className="group animate-fade-in bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
             style={{ animationDelay: "200ms" }}
           >
             <div className="p-8">
               <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Zap className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Automated Pipelines
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Set up custom pipelines that automatically process data and
                 generate reports on schedule
               </p>
@@ -248,17 +248,17 @@ export default async function HomePage() {
 
           {/* Real-time Processing */}
           <div
-            className="group animate-fade-in bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 overflow-hidden"
+            className="group animate-fade-in bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
             style={{ animationDelay: "300ms" }}
           >
             <div className="p-8">
               <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Clock className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Real-time Processing
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Track job status in real-time with detailed progress updates and
                 instant notifications
               </p>
@@ -267,17 +267,17 @@ export default async function HomePage() {
 
           {/* Secure & Reliable */}
           <div
-            className="group animate-fade-in bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 overflow-hidden"
+            className="group animate-fade-in bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
             style={{ animationDelay: "400ms" }}
           >
             <div className="p-8">
               <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Shield className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Secure & Reliable
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Enterprise-grade security with reliable job processing and
                 automatic error handling
               </p>
@@ -286,17 +286,17 @@ export default async function HomePage() {
 
           {/* Customizable Templates */}
           <div
-            className="group animate-fade-in bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 overflow-hidden"
+            className="group animate-fade-in bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
             style={{ animationDelay: "500ms" }}
           >
             <div className="p-8">
               <div className="w-14 h-14 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <FileText className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Custom Templates
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Create and manage custom report templates with flexible styling
                 and branding options
               </p>
@@ -317,7 +317,7 @@ export default async function HomePage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/pipelines"
-                className="inline-flex items-center px-8 py-4 rounded-xl font-semibold text-indigo-600 bg-white hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center px-8 py-4 rounded-xl font-semibold text-indigo-600 dark:text-indigo-700 bg-white hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 <Package className="w-5 h-5 mr-2" />
                 Browse Pipelines
