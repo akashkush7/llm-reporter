@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: llm-reporter-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  reporting-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: report-framework:latest
+    container_name: report-ui
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - HOME=/root
+    volumes:
+      - /shared/report-framework:/shared/report-framework:rw # Read-write for reports
+      - ${HOME}/.aganitha:/root/.aganitha:rw # Mount config (read-only is fine)
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    labels:
+      - "user=akash"
+      - "description=Report Generation Framework"
+      - "port=3002"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://0.0.0.0:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  report-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    image: report-worker:latest
+    container_name: llm-reporter-worker
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - HOME=/root # Add HOME env var
+    volumes:
+      - /shared/report-framework:/shared/report-framework # Read-write (removed :ro)
+      - ${HOME}/.aganitha:/root/.aganitha # Mount config for worker too
+    depends_on:
+      redis:
+        condition: service_healthy
+      reporting-ui:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+    driver: local

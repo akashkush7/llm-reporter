@@ -1,0 +1,54 @@
+# ============================================================================
+# Stage 1: Builder
+# ============================================================================
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copy package files first
+COPY package.json pnpm-lock.yaml* .npmrc ./
+
+# Install dependencies
+RUN pnpm install --no-frozen-lockfile
+
+# Copy TypeScript config
+COPY tsconfig.json tsconfig.worker.json* ./
+
+# Copy source files that need to be compiled
+COPY scripts ./scripts
+COPY workers ./workers
+COPY lib ./lib
+
+# Build worker (compile TS to JS)
+RUN npx tsc -p tsconfig.worker.json || \
+    npx tsc --outDir dist --module commonjs --target ES2022 scripts/**/*.ts workers/**/*.ts
+
+# ============================================================================
+# Stage 2: Production Runner
+# ============================================================================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copy package files
+COPY package.json pnpm-lock.yaml* .npmrc ./
+
+# Install ONLY production dependencies
+RUN pnpm install --prod --no-frozen-lockfile
+
+# Copy compiled files from builder
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/lib ./lib
+
+# Create reports directory
+RUN mkdir -p /shared/report-framework/reports
+
+ENV NODE_ENV=production
+
+CMD ["node", "dist/scripts/start-worker.js"]

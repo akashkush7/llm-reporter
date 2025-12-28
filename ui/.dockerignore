@@ -1,0 +1,28 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+dist
+out
+build
+
+# Development
+.git
+.github
+.vscode
+*.log
+*.md
+.env*.local
+
+# Tests
+__tests__
+*.test.ts
+*.test.tsx
+*.spec.ts
+
+# Misc
+.DS_Store
+coverage
+.turbo
