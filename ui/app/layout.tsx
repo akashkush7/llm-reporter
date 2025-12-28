@@ -18,9 +18,10 @@ export default function RootLayout({
       <body className="antialiased min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange={false}
+          storageKey="llm-reporter-theme"
         >
           <Navigation />
           {children}
